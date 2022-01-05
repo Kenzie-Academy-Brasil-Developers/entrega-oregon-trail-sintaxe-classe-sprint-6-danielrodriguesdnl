@@ -66,9 +66,7 @@ class Wagon {
     }
 
     getAvailableSeatCount = function (){
-        for(let i = 0; i< this._passageiros.length; i++){
-            return i;
-        }
+        return this._capacity - this._passageiros.length; 
     }
 
     join = function (traveler){
@@ -79,12 +77,11 @@ class Wagon {
 
     shouldQuarantine = function () {
         for(let i= 0; i<this._passageiros.length; i++){
-           if(this._passageiros[i].food < 1) {
+           if(this._passageiros[i].isHealthy === false) {
                return true;
-           } else {
-               return false;
-           } 
+           }   
         }
+        return false;
     }
 
     totalFood = function () {
@@ -92,7 +89,7 @@ class Wagon {
         let travelersFood = 0;
         
         for(let i= 0; i<this._passageiros.length; i++){
-            travelersFood = travelersFood + this._passageiros[i].food
+            travelersFood = travelersFood + this._passageiros[i].food;
         }
         return travelersFood;
     }
